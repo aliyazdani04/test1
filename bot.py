@@ -292,13 +292,6 @@ while True:
 				elif msg["type"]=="Event" and not msg.get("message_id") in answered and not sleeped:
 					name = bot.getGroupInfo(target)["data"]["group"]["group_title"]
 					data = msg['event_data']
-					if data["type"]=="RemoveGroupMembers":
-						try:
-							user = bot.getUserInfo(data['peer_objects'][0]['object_guid'])["data"]["user"]["first_name"]
-							bot.sendMessage(target, f"‼️ کاربر {user} با موفقیت از گروه حذف شد .", message_id=msg["message_id"])
-							# bot.deleteMessages(target, [msg["message_id"]])
-						except:
-							print("err rm member answer")
 					
 					elif data["type"]=="AddedGroupMembers":
 					                user = bot.getUserInfo(data['peer_objects'][0]['object_guid'])["data"]["user"]["first_name"]
