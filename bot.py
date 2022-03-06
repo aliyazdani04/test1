@@ -20,13 +20,6 @@ target=input("Please Enter Your Guid (Group): ")
 
 print ("\nThe robot was successfully activated.")
 
-async def check_member(_, client, message):
-    try:
-        user_id = message.from_user.id
-        user = await client.get_chat_member('samyborder', user_id)
-        if user.status in ['member', 'creator', 'administrator']:
-            return True
-
 def hasAds(msg):
 	links = ["http://","https://",".ir",".com",".org",".net",".me"]
 	for i in links:
@@ -55,17 +48,17 @@ def alert(guid,user,link=False):
 	if link : haslink = "."
 
 	if coun == 1:
-		bot.sendMessage(target, "دادا[ @"+user+" ] \n"+haslink+"لینک نفرس")
+		bot.sendMessage(target, "دادا @"+user+"  \n"+haslink+"لینک نفرس")
     
 	elif coun == 2:
-		bot.sendMessage(target, "دابش [ @"+user+" ] \n"+haslink+" :-)لینک یا تبلیغ نفرس حقیقتن")
+		bot.sendMessage(target, "دابش  @"+user+"  \n"+haslink+" :-)لینک یا تبلیغ نفرس حقیقتن")
 	
 	elif coun == 3:
-		bot.sendMessage(target, "داش [ @"+user+" ] \n"+haslink+" یه بار دیگه تبلیغ بفرستی ریمو میشیا🤨")
+		bot.sendMessage(target, "داش  @"+user+"  \n"+haslink+" یه بار دیگه تبلیغ بفرستی ریمو میشیا🤨")
 
-	elif coun == 3:
+	elif coun == 4:
 		blacklist.append(guid)
-		bot.sendMessage(target, "دوستمون  [ @"+user+" ] \n"+haslink+" حرف گوش نکرد ریمو شد😔")
+		bot.sendMessage(target, "دوستمون   @"+user+"  \n"+haslink+" حرف گوش نکرد ریمو شد😔")
 		bot.banGroupMember(target, guid)
 
 
@@ -166,6 +159,18 @@ while True:
 							except:
 								print("err unpin")
 								
+						elif msg.get("text").startswith("لینک") or msg.get("text").startswith("link"):
+							try:
+								bot.sendMessage(target, "https://rubika.ir/joing/CAFDBBDH0EDESZBMBGQAIRKKQDLWWPHM", message_id=msg.get("message_id"))
+							except:
+								print("err CheKhabar")
+						
+						elif msg.get("text").startswith("ادمین") or msg.get("text").startswith("admin"):
+							try:
+								bot.sendMessage(target, "اگه با سازنده گپ کاری داری این آیدیشه 👇🏼 \n @ali_yazdani04", message_id=msg.get("message_id"))
+							except:
+								print("err bot answer"
+								      
 						elif "forwarded_from" in msg.keys() and bot.getMessagesInfo(target, [msg.get("message_id")])[0]["forwarded_from"]["type_from"] == "Channel" and not msg.get("author_object_guid") in admins :
 							try:
 								print("Yek ahmagh forwared Zad")
